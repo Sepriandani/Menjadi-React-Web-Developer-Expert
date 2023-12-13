@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function IncreaseButton({increase}) {
+function IncreaseButton({ increase }) {
   return (
-    <button className='increase' onClick={increase}>
+    <button className="increase" type="button" onClick={increase}>
       <span role="img" aria-label="plus">
         +
       </span>
@@ -13,6 +13,6 @@ function IncreaseButton({increase}) {
 
 IncreaseButton.propTypes = {
   increase: PropTypes.func.isRequired,
-}
+};
 
 export default IncreaseButton;
