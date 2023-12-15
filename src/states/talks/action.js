@@ -1,11 +1,14 @@
+/**
+ * @TODO: Define all the actions (creator) for the talks state
+ */
 import api from '../../utils/api';
- 
+
 const ActionType = {
   RECEIVE_TALKS: 'RECEIVE_TALKS',
   ADD_TALK: 'ADD_TALK',
   TOGGLE_LIKE_TALK: 'TOGGLE_LIKE_TALK',
 };
- 
+
 function receiveTalksActionCreator(talks) {
   return {
     type: ActionType.RECEIVE_TALKS,
@@ -14,7 +17,7 @@ function receiveTalksActionCreator(talks) {
     },
   };
 }
- 
+
 function addTalkActionCreator(talk) {
   return {
     type: ActionType.ADD_TALK,
@@ -23,7 +26,7 @@ function addTalkActionCreator(talk) {
     },
   };
 }
- 
+
 function toggleLikeTalkActionCreator({ talkId, userId }) {
   return {
     type: ActionType.TOGGLE_LIKE_TALK,
@@ -33,7 +36,7 @@ function toggleLikeTalkActionCreator({ talkId, userId }) {
     },
   };
 }
- 
+
 function asyncAddTalk({ text, replyTo = '' }) {
   return async (dispatch) => {
     try {
@@ -44,12 +47,12 @@ function asyncAddTalk({ text, replyTo = '' }) {
     }
   };
 }
- 
+
 function asyncToogleLikeTalk(talkId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
     dispatch(toggleLikeTalkActionCreator({ talkId, userId: authUser.id }));
- 
+
     try {
       await api.toggleLikeTalk(talkId);
     } catch (error) {
@@ -58,7 +61,7 @@ function asyncToogleLikeTalk(talkId) {
     }
   };
 }
- 
+
 export {
   ActionType,
   receiveTalksActionCreator,

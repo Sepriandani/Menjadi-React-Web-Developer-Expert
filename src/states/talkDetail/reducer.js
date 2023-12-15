@@ -1,5 +1,8 @@
+/**
+ * @TODO: Define reducer for the talkDetail state
+ */
 import { ActionType } from './action';
- 
+
 function talkDetailReducer(talkDetail = null, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_TALK_DETAIL:
@@ -17,5 +20,5 @@ function talkDetailReducer(talkDetail = null, action = {}) {
       return talkDetail;
   }
 }
- 
+
 export default talkDetailReducer;
