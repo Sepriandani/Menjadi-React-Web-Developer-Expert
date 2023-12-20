@@ -214,8 +214,8 @@ const api = (() => {
         getAllThreads,
         getThreadDetail,
         createComment,
-    }
+    };
 
-})
+})();
 
 export default api;
