@@ -1,6 +1,6 @@
 function LeaderboardsPage() {
     return(
-        <div>Ini Leaderboards Page</div>
+        <div className="h-96 bg-gray-200">Ini Leaderboards Page</div>
     );
 }
 

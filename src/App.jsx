@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { asyncPreloadProcess } from "./states/isPreload/action";
 import Loading from "./components/Loading";
+import Sidebar from "./components/Sidebar";
+import Topbar from "./components/Topbar";
 
 export default function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -41,12 +43,20 @@ export default function App() {
   return (
     <>
       <Loading />
-      <Routes>
-        <Route path="/" element={<ThreadsPage />} />
-        <Route path="/leaderboards" element={<LeaderboardsPage />} />
-        <Route path="/threads/thread-1" element={<DetailThreadPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
-      </Routes>
+      <main>
+        <div className="fixed flex w-full">
+          <Sidebar />
+          <Topbar />
+        </div>
+        <div className="w-full pl-64 pr-8 pt-24">
+          <Routes>
+            <Route path="/" element={<ThreadsPage />} />
+            <Route path="/leaderboards" element={<LeaderboardsPage />} />
+            <Route path="/threads/thread-1" element={<DetailThreadPage />} />
+            <Route path="/*" element={<NotFoundPage />} />
+          </Routes>
+        </div>
+      </main>
     </>
   )
 }

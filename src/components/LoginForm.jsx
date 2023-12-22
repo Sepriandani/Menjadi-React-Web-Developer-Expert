@@ -16,7 +16,7 @@ function LoginForm({ login }) {
                     <label className="mb-2" htmlFor="password">Password</label>
                     <input value={password} onChange={onPasswordChange} className="mb-4 ring-gray-400 ring-1 p-2 rounded-sm" type="password" />
                     <div className="mb-4 text-sm">Belum punya akun ? <Link className="text-indigo-400" to="/register">Daftar disini</Link></div>
-                    <button onClick={() => login({ email, password })} className="bg-indigo-400 p-2 rounded-sm" type="submit">Login</button>
+                    <button onClick={() => login({ email, password })} className="bg-indigo-400 p-2 rounded-sm" type="button">Login</button>
                 </form>
             </div>
         </div>

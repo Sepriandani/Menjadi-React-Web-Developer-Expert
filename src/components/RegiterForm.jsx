@@ -21,7 +21,7 @@ function RegisterForm({ register }) {
                     <div className="mb-4 text-sm">
                         Sudah punya akun ? <Link className="text-indigo-400" to="/">Login disini</Link>
                     </div>
-                    <button onClick={() => register({ name, email, password })} className="bg-indigo-400 p-2 rounded-sm" type="submit">Login</button>
+                    <button onClick={() => register({ name, email, password })} className="bg-indigo-400 p-2 rounded-sm" type="button">Login</button>
                 </form>
             </div>
         </div>

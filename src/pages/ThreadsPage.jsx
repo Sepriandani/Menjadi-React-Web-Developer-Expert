@@ -1,6 +1,8 @@
 function ThreadsPage() {
     return(
-        <div>Ini Threads Page</div>
+        <div className="">
+            <div className="h-96">Ini Threads Page</div>
+        </div>
     );
 }
 
