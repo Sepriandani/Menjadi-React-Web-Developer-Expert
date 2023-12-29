@@ -1,9 +1,50 @@
+import { useDispatch, useSelector } from "react-redux";
+import Categories from "../components/Categories";
+import ThreadsList from "../components/ThreadsList";
+import {
+  asyncToogleDownVoteThread,
+  asyncToogleUpVoteThread,
+} from "../states/threads/action";
+import { useEffect } from "react";
+import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+
 function ThreadsPage() {
-    return(
-        <div className="">
-            <div className="h-96">Ini Threads Page</div>
-        </div>
-    );
+  const {
+    threads = [],
+    users = [],
+    authUser,
+  } = useSelector((states) => states);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncPopulateUsersAndThreads());
+  }, [dispatch]);
+
+  const onUpVoteBy = (id) => {
+    dispatch(asyncToogleUpVoteThread(id));
+  };
+
+  const onDownVoteBy = (id) => {
+    dispatch(asyncToogleDownVoteThread(id));
+  };
+
+  const threadsList = threads.map((thread) => ({
+    ...thread,
+    authUser: authUser.id,
+    owner: users.find((user) => user.id === thread.ownerId)?.name || null,
+  }));
+
+  return (
+    <>
+      <Categories />
+      <ThreadsList
+        threads={threadsList}
+        upVoteBy={onUpVoteBy}
+        downVoteBy={onDownVoteBy}
+      />
+    </>
+  );
 }
 
 export default ThreadsPage;

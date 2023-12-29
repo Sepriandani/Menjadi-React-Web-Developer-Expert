@@ -22,12 +22,12 @@ export default function App() {
     dispatch(asyncPreloadProcess());
   }, [dispatch]);
 
-  if(isPreload) {
-    return null
+  if (isPreload) {
+    return null;
   }
 
-  if(authUser === null) {
-    return(
+  if (authUser === null) {
+    return (
       <>
         <Loading />
         <main>
@@ -43,20 +43,20 @@ export default function App() {
   return (
     <>
       <Loading />
-      <main>
-        <div className="fixed flex w-full">
-          <Sidebar />
+      <main className="m-0 p-0 relative">
+        <Sidebar />
+        <div className=" ml-0 p-0 lg:ml-60">
           <Topbar />
-        </div>
-        <div className="w-full pl-64 pr-8 pt-24">
-          <Routes>
-            <Route path="/" element={<ThreadsPage />} />
-            <Route path="/leaderboards" element={<LeaderboardsPage />} />
-            <Route path="/threads/thread-1" element={<DetailThreadPage />} />
-            <Route path="/*" element={<NotFoundPage />} />
-          </Routes>
+          <div className="px-2 pb-10 pt-20 lg:pt-24 lg:px-10">
+            <Routes>
+              <Route path="/" element={<ThreadsPage />} />
+              <Route path="/leaderboards" element={<LeaderboardsPage />} />
+              <Route path="/threads/thread-1" element={<DetailThreadPage />} />
+              <Route path="/*" element={<NotFoundPage />} />
+            </Routes>
+          </div>
         </div>
       </main>
     </>
-  )
+  );
 }

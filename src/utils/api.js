@@ -1,221 +1,220 @@
 const api = (() => {
-    const BASE_URL = "https://forum-api.dicoding.dev/v1";
+  const BASE_URL = "https://forum-api.dicoding.dev/v1";
 
-    async function _fetchWithAuth(url, options={}) {
-        return fetch(url, {
-            ...options,
-            headers: {
-                ...options.headers,
-                Authorization: `Bearer ${getAccessToken()}`,
-            },
-        });
+  async function _fetchWithAuth(url, options = {}) {
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+  }
+
+  function putAccessToken(token) {
+    localStorage.setItem("accessToken", token);
+  }
+
+  function getAccessToken() {
+    return localStorage.getItem("accessToken");
+  }
+
+  async function register({ name, email, password }) {
+    const response = await fetch(`${BASE_URL}/register`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
+
+    const responseJson = await response.json();
+    const { status, message } = responseJson;
+
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    function putAccessToken(token) {
-        localStorage.setItem("accessToken", token);
+    const {
+      data: { user },
+    } = responseJson;
+
+    return user;
+  }
+
+  async function login({ email, password }) {
+    const response = await fetch(`${BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    function getAccessToken() {
-        return localStorage.getItem("accessToken");
+    const {
+      data: { token },
+    } = responseJson;
+
+    return token;
+  }
+
+  async function getAllUsers() {
+    const response = await fetch(`${BASE_URL}/users`);
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    async function register({ name, email, password}) {
-        const response = await fetch(`${BASE_URL}/register`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                password,
-            }),
-        });
+    const {
+      data: { users },
+    } = responseJson;
 
-        const responseJson = await response.json();
-        const { status, message } = responseJson;
+    return users;
+  }
 
-        if(status !== "success") {
-            throw new Error(message);
-        }
+  async function getOwnProfile() {
+    const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
 
-        const {
-            data: { user },
-        } = responseJson;
+    const responseJson = await response.json();
 
-        return user;
+    const { status, message } = responseJson;
+
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    async function login({ email, password}) {
-        const response = await fetch(`${BASE_URL}/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email,
-                password,
-            }),
-        });
+    const {
+      data: { user },
+    } = responseJson;
 
-        const responseJson = await response.json();
+    return user;
+  }
 
-        const { status, message } = responseJson;
+  // THREADS
+  async function createThread({ title, body, category }) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        body,
+        category,
+      }),
+    });
 
-        if(status !== "success") {
-            throw new Error(message);
-        }
+    const responseJson = await response.json();
 
-        const {
-            data: { token },
-        } = responseJson;
+    const { status, message } = responseJson;
 
-        return token;
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    async function getAllUsers() {
-        const response = await fetch(`${BASE_URL}/users`);
+    const {
+      data: { thread },
+    } = responseJson;
 
-        const responseJson = await response.json();
+    return thread;
+  }
 
-        const { status, message } = responseJson;
+  async function getAllThreads() {
+    const response = await fetch(`${BASE_URL}/threads`);
 
-        if(status !== "success"){
-            throw new Error(message);
-        }
+    const responseJson = await response.json();
 
-        const {
-            data: { users },
-        } = responseJson;
+    const { status, message } = responseJson;
 
-        return users;
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    async function getOwnProfile() {
-        const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
+    const {
+      data: { threads },
+    } = responseJson;
 
-        const responseJson = await response.json();
+    return threads;
+  }
 
-        const { status, message } = responseJson;
+  async function getThreadDetail(threadId) {
+    const response = await fetch(`${BASE_URL}/threads/${threadId}`);
 
-        if(status !== "success") {
-            throw new Error(message);
-        }
+    const responseJson = await response.json();
 
-        const {
-            data: { user },
-        } = responseJson;
+    const { status, message } = responseJson;
 
-        return user;
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    // THREADS
-    async function createThread({ title, body, category }) {
-        const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json",
-            },
-            body: JSON.stringify({
-                title,
-                body,
-                category,
-            }),
-        });
+    const {
+      data: { detailThread },
+    } = responseJson;
 
-        const responseJson = await response.json();
+    return detailThread;
+  }
 
-        const { status, message } = responseJson;
+  // COMMENTS
+  async function createComment({ id, content }) {
+    const response = await _fetchWithAuth(`${BASE_URL}/${id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content,
+      }),
+    });
 
-        if(status !== "success"){
-            throw new Error(message);
-        }
+    const responseJson = await response.json();
 
-        const{
-            data: { thread },
-        } = responseJson;
+    const { status, message } = responseJson;
 
-        return thread;
+    if (status !== "success") {
+      throw new Error(message);
     }
 
-    async function getAllThreads() {
-        const response = await fetch(`${BASE_URL}/threads`);
+    const {
+      data: { comment },
+    } = responseJson;
 
-        const responseJson = await response.json();
+    return comment;
+  }
 
-        const { status, message } = responseJson;
+  // VOTES
 
-        if(status !== "success"){
-            throw new Error(message);
-        }
-
-        const{
-            data: { threads },
-        } = responseJson;
-
-        return threads;
-    }
-
-    async function getThreadDetail(threadId) {
-        const response = await fetch(`${BASE_URL}/threads/${threadId}`);
-
-        const responseJson = await response.json();
-
-        const { status, message } = responseJson;
-
-        if(status !== "success"){
-            throw new Error(message);
-        }
-
-        const{
-            data: { detailThread}
-        } = responseJson;
-
-        return detailThread;
-    }
-
-    // COMMENTS
-    async function createComment({ id, content }) {
-        const response = await _fetchWithAuth(`${BASE_URL}/${id}/comments`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                content,
-            }),
-        });
-
-        const responseJson = await response.json();
-
-        const { status, message } = responseJson;
-
-        if(status !== "success") {
-            throw new Error(message);
-        }
-
-        const{
-            data: { comment },
-        } = responseJson;
-
-        return comment;
-    }
-
-    // VOTES
-
-    return {
-        putAccessToken,
-        getAccessToken,
-        register,
-        login,
-        getAllUsers,
-        getOwnProfile,
-        createThread,
-        getAllThreads,
-        getThreadDetail,
-        createComment,
-    };
-
+  return {
+    putAccessToken,
+    getAccessToken,
+    register,
+    login,
+    getAllUsers,
+    getOwnProfile,
+    createThread,
+    getAllThreads,
+    getThreadDetail,
+    createComment,
+  };
 })();
 
 export default api;

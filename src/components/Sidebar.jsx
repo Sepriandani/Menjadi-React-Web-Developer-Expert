@@ -1,23 +1,21 @@
-import { IoMdChatboxes, IoMdLogOut, IoMdStats} from "react-icons/io";
+import menu from "../utils/menu";
+import MenuItem from "./MenuItem";
 
 function Sidebar() {
-    return(
-        <aside className="h-screen bg-indigo-400">
-            <div className="h-full flex items-center">
-                <ul>
-                    <li className="p-4 px-10 bg-white flex gap-4 items-center">
-                        <IoMdChatboxes className="text-2xl text-indigo-400" /> Threads
-                    </li>
-                    <li className="p-4 px-10 flex gap-4 items-center text-gray-200">
-                        <IoMdStats className="text-2xl" /> Leaderboards
-                    </li>
-                    <li className="p-4 px-10 flex gap-4 items-center text-gray-200">
-                        <IoMdLogOut className="text-2xl" /> Logout
-                    </li>
-                </ul>
-            </div>
-        </aside>
-    );
+  return (
+    <aside className="bg-indigo-400 w-52 lg:w-60  fixed z-[9999] hidden left-36 lg:left-0 top-16 lg:top-0 lg:h-screen lg:flex items-center">
+      <ul className="w-full">
+        {menu.map((item, index) => (
+          <MenuItem
+            key={index}
+            name={item.name}
+            path={item.path}
+            icon={item.icon}
+          />
+        ))}
+      </ul>
+    </aside>
+  );
 }
 
 export default Sidebar;
