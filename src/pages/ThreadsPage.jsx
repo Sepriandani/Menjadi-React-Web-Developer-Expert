@@ -37,7 +37,7 @@ function ThreadsPage() {
 
   return (
     <>
-      <Categories />
+      <Categories threads={threadsList} />
       <ThreadsList
         threads={threadsList}
         upVoteBy={onUpVoteBy}

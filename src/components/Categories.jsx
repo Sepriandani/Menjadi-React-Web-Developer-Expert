@@ -1,29 +1,24 @@
-function Categories() {
+import PropTypes from "prop-types";
+import CategoryItem from "./CategoryItem";
+
+function Categories({ threads }) {
   return (
     <div className="w-full">
       <div className="text-lg mb-4">Kategori Populer</div>
       <div className="flex gap-4">
-        <button
-          className="px-3 py-1 ring-1 ring-gray-500 rounded-sm hover:bg-indigo-400 hover:text-white"
-          type="button"
-        >
-          #php
-        </button>
-        <button
-          className="px-3 py-1 ring-1 ring-gray-500 rounded-sm hover:bg-indigo-400 hover:text-white"
-          type="button"
-        >
-          #javascript
-        </button>
-        <button
-          className="px-3 py-1 ring-1 ring-gray-500 rounded-sm hover:bg-indigo-400 hover:text-white"
-          type="button"
-        >
-          #python
-        </button>
+      {threads.map((thread) => (
+        <CategoryItem
+          key={thread.id}
+          category={thread.category}
+        />
+      ))}
       </div>
     </div>
   );
+}
+
+Categories.propTypes = {
+  threads: PropTypes.array.isRequired,
 }
 
 export default Categories;

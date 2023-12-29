@@ -11,6 +11,7 @@ import { asyncPreloadProcess } from "./states/isPreload/action";
 import Loading from "./components/Loading";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
+import AddDiscussionPage from "./pages/AddDiscussionPage";
 
 export default function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -46,11 +47,12 @@ export default function App() {
       <main className="m-0 p-0 relative">
         <Sidebar />
         <div className=" ml-0 p-0 lg:ml-60">
-          <Topbar />
+          <Topbar name={authUser.name} avatar={authUser.avatar} />
           <div className="px-2 pb-10 pt-20 lg:pt-24 lg:px-10">
             <Routes>
               <Route path="/" element={<ThreadsPage />} />
               <Route path="/leaderboards" element={<LeaderboardsPage />} />
+              <Route path="/new" element={<AddDiscussionPage />} />
               <Route path="/threads/thread-1" element={<DetailThreadPage />} />
               <Route path="/*" element={<NotFoundPage />} />
             </Routes>

@@ -2,7 +2,6 @@ import ThreadItem from "./ThreadItem";
 import PropTypes from "prop-types";
 
 function ThreadsList({ threads, upVoteBy, downVoteBy }) {
-  console.log(threads);
   return (
     <div className="my-10">
       <div className="text-2xl font-semibold">Diskusi Tesedia</div>
