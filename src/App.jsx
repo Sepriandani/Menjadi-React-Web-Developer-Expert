@@ -11,7 +11,7 @@ import { asyncPreloadProcess } from "./states/isPreload/action";
 import Loading from "./components/Loading";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
-import AddDiscussionPage from "./pages/AddDiscussionPage";
+import AddThreadPage from "./pages/AddThreadPage";
 
 export default function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -52,8 +52,8 @@ export default function App() {
             <Routes>
               <Route path="/" element={<ThreadsPage />} />
               <Route path="/leaderboards" element={<LeaderboardsPage />} />
-              <Route path="/new" element={<AddDiscussionPage />} />
-              <Route path="/threads/thread-1" element={<DetailThreadPage />} />
+              <Route path="/new" element={<AddThreadPage />} />
+              <Route path="/threads/:threadId" element={<DetailThreadPage />} />
               <Route path="/*" element={<NotFoundPage />} />
             </Routes>
           </div>

@@ -6,12 +6,9 @@ function Categories({ threads }) {
     <div className="w-full">
       <div className="text-lg mb-4">Kategori Populer</div>
       <div className="flex gap-4">
-      {threads.map((thread) => (
-        <CategoryItem
-          key={thread.id}
-          category={thread.category}
-        />
-      ))}
+        {threads.map((thread) => (
+          <CategoryItem key={thread.id} category={thread.category} />
+        ))}
       </div>
     </div>
   );
@@ -19,6 +16,6 @@ function Categories({ threads }) {
 
 Categories.propTypes = {
   threads: PropTypes.array.isRequired,
-}
+};
 
 export default Categories;

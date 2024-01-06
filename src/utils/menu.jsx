@@ -1,4 +1,9 @@
-import { IoMdAddCircle, IoMdChatboxes, IoMdLogOut, IoMdStats } from "react-icons/io";
+import {
+  IoMdAddCircle,
+  IoMdChatboxes,
+  IoMdLogOut,
+  IoMdStats,
+} from "react-icons/io";
 
 const menu = [
   {
@@ -12,7 +17,7 @@ const menu = [
     icon: <IoMdStats />,
   },
   {
-    name: "Add Discussion",
+    name: "Add Thread",
     path: "/new",
     icon: <IoMdAddCircle />,
   },

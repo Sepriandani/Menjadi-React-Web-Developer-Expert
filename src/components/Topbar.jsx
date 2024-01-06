@@ -30,6 +30,6 @@ function Topbar({ name, avatar }) {
 Topbar.propTypes = {
   name: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
-}
+};
 
 export default Topbar;
