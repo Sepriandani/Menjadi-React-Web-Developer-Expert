@@ -2,9 +2,9 @@ import parse from "html-react-parser";
 import { useNavigate } from "react-router-dom";
 import { postedAt } from "../utils";
 import PropTypes from "prop-types";
-import UpVoteButton from "./button/UpVoteButton";
-import DownVoteButton from "./button/DownVoteButton";
-import ShareVoteButton from "./button/ShareVoteButton";
+import ShareVoteButton from "./ShareVoteButton";
+import VoteButton from "./VoteButton";
+import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
 
 function ThreadItem({
   id,
@@ -60,17 +60,17 @@ function ThreadItem({
       </div>
       <div className="mb-2">{parse(body)}</div>
       <div className="flex gap-4">
-        <UpVoteButton
-          upVoteBy={upVoteBy}
-          upVotesBy={upVotesBy}
-          isThreadUpVote={isThreadUpVote}
-          onUpVoteClick={onUpVoteClick}
+        <VoteButton
+          voteBy={upVoteBy}
+          votesBy={upVotesBy}
+          onVoteClick={onUpVoteClick}
+          icon={isThreadUpVote ? <BiSolidLike /> : <BiLike />}
         />
-        <DownVoteButton
-          downVoteBy={downVoteBy}
-          downVotesBy={downVotesBy}
-          isThreadDownVote={isThreadDownVote}
-          onDownVoteClick={onDownVoteClick}
+        <VoteButton
+          voteBy={downVoteBy}
+          votesBy={downVotesBy}
+          onVoteClick={onDownVoteClick}
+          icon={isThreadDownVote ? <BiSolidDislike /> : <BiDislike />}
         />
         <ShareVoteButton />
         <div>{postedAt(createdAt)}</div>
@@ -85,7 +85,7 @@ function ThreadItem({
 const userShape = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
+  email: PropTypes.string,
   avatar: PropTypes.string.isRequired,
 };
 
@@ -103,8 +103,6 @@ const threadItemShape = {
 ThreadItem.propTypes = {
   ...threadItemShape,
   authUser: PropTypes.string.isRequired,
-  upVoteBy: PropTypes.func,
-  downVoteBy: PropTypes.func,
 };
 
 export default ThreadItem;

@@ -175,16 +175,19 @@ const api = (() => {
   }
 
   // COMMENTS
-  async function createComment({ id, content }) {
-    const response = await _fetchWithAuth(`${BASE_URL}/${id}/comments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  async function createComment({ threadId, content }) {
+    const response = await _fetchWithAuth(
+      `${BASE_URL}/threads/${threadId}/comments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content,
+        }),
       },
-      body: JSON.stringify({
-        content,
-      }),
-    });
+    );
 
     const responseJson = await response.json();
     const { status, message } = responseJson;
@@ -257,7 +260,7 @@ const api = (() => {
 
   async function upVoteComment(threadId, commentId) {
     const response = await _fetchWithAuth(
-      `${BASE_URL}/comments/${threadId}/comments/${commentId}/up-vote`,
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/up-vote`,
       {
         method: "POST",
         headers: {
@@ -282,7 +285,7 @@ const api = (() => {
 
   async function downVoteComment(threadId, commentId) {
     const response = await _fetchWithAuth(
-      `${BASE_URL}/comments/${threadId}/comments/${commentId}/down-vote`,
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/down-vote`,
       {
         method: "POST",
         headers: {
@@ -307,7 +310,7 @@ const api = (() => {
 
   async function neutralizeVoteComment(threadId, commentId) {
     const response = await _fetchWithAuth(
-      `${BASE_URL}/comments/${threadId}/comments/${commentId}/neutral-vote`,
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`,
       {
         method: "POST",
         headers: {

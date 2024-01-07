@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Categories from "../components/Categories";
 import ThreadsList from "../components/ThreadsList";
 import {
-  asyncToogleDownVoteThread,
-  asyncToogleUpVoteThread,
+  asyncDownVoteThread,
+  asyncUpVoteThread,
 } from "../states/threads/action";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 
 function ThreadsPage() {
@@ -16,17 +16,24 @@ function ThreadsPage() {
   } = useSelector((states) => states);
 
   const dispatch = useDispatch();
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
   }, [dispatch]);
 
   const onUpVoteBy = (id) => {
-    dispatch(asyncToogleUpVoteThread(id));
+    dispatch(asyncUpVoteThread(id));
   };
 
   const onDownVoteBy = (id) => {
-    dispatch(asyncToogleDownVoteThread(id));
+    dispatch(asyncDownVoteThread(id));
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory((prevCategory) =>
+      prevCategory === category ? "" : category,
+    );
   };
 
   const threadsList = threads.map((thread) => ({
@@ -35,11 +42,20 @@ function ThreadsPage() {
     owner: users.find((user) => user.id === thread.ownerId)?.name || null,
   }));
 
+  const filteredThreads =
+    selectedCategory === ""
+      ? threadsList
+      : threadsList.filter((thread) => thread.category === selectedCategory);
+
   return (
     <>
-      <Categories threads={threadsList} />
-      <ThreadsList
+      <Categories
         threads={threadsList}
+        selectedCategory={selectedCategory}
+        onCategoryChange={handleCategoryChange}
+      />
+      <ThreadsList
+        threads={filteredThreads}
         upVoteBy={onUpVoteBy}
         downVoteBy={onDownVoteBy}
       />

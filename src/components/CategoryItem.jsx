@@ -1,10 +1,17 @@
 import PropTypes from "prop-types";
 
-function CategoryItem({ category }) {
+function CategoryItem({ category, isSelected, onCategoryChange }) {
+  const handleClick = () => {
+    onCategoryChange(category);
+  };
+
   return (
     <button
-      className="px-3 py-1 ring-1 ring-gray-500 rounded-sm hover:bg-indigo-400 hover:text-white"
+      className={`${
+        isSelected && `bg-indigo-400`
+      } px-3 py-1 ring-1 ring-gray-500 rounded-sm hover:bg-indigo-400 hover:text-white`}
       type="button"
+      onClick={handleClick}
     >
       #{category}
     </button>
@@ -13,6 +20,8 @@ function CategoryItem({ category }) {
 
 CategoryItem.propTypes = {
   category: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  onCategoryChange: PropTypes.func,
 };
 
 export default CategoryItem;

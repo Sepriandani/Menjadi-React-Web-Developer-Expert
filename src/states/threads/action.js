@@ -4,8 +4,8 @@ import api from "../../utils/api";
 const ActionType = {
   RECEIVE_THREADS: "RECEIVE_THREADS",
   ADD_THREAD: "ADD_THREAD",
-  TOGGLE_UPVOTE_THREAD: "TOGGLE_UPVOTE_THREAD",
-  TOGGLE_DOWNVOTE_THREAD: "TOGGLE_DOWNVOTE_THREAD",
+  UP_VOTE_THREAD: "UP_VOTE_THREAD",
+  DOWN_VOTE_THREAD: "DOWN_VOTE_THREAD",
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -26,9 +26,9 @@ function addThreadActionCreator(thread) {
   };
 }
 
-function toggleUpVoteThreadActionCreator({ threadId, userId }) {
+function upVoteThreadActionCreator({ threadId, userId }) {
   return {
-    type: ActionType.TOGGLE_UPVOTE_THREAD,
+    type: ActionType.UP_VOTE_THREAD,
     payload: {
       threadId,
       userId,
@@ -36,9 +36,9 @@ function toggleUpVoteThreadActionCreator({ threadId, userId }) {
   };
 }
 
-function toggleDownVoteThreadActionCreator({ threadId, userId }) {
+function downVoteThreadActionCreator({ threadId, userId }) {
   return {
-    type: ActionType.TOGGLE_DOWNVOTE_THREAD,
+    type: ActionType.DOWN_VOTE_THREAD,
     payload: {
       threadId,
       userId,
@@ -60,38 +60,30 @@ function asyncAddThread({ title, category, body }) {
   };
 }
 
-function asyncToogleUpVoteThread(threadId) {
+function asyncUpVoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
-    dispatch(
-      toggleUpVoteThreadActionCreator({ threadId, userId: authUser.id }),
-    );
+    dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
 
     try {
-      await api.toggleUpVoteThread(threadId);
+      await api.upVoteThread(threadId);
     } catch (error) {
       alert(error.message);
-      dispatch(
-        toggleUpVoteThreadActionCreator({ threadId, userId: authUser.id }),
-      );
+      dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
     }
   };
 }
 
-function asyncToogleDownVoteThread(threadId) {
+function asyncDownVoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
-    dispatch(
-      toggleDownVoteThreadActionCreator({ threadId, userId: authUser.id }),
-    );
+    dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }));
 
     try {
-      await api.toggleDownVoteThread(threadId);
+      await api.downVoteThread(threadId);
     } catch (error) {
       alert(error.message);
-      dispatch(
-        toggleDownVoteThreadActionCreator({ threadId, userId: authUser.id }),
-      );
+      dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }));
     }
   };
 }
@@ -100,9 +92,9 @@ export {
   ActionType,
   receiveThreadsActionCreator,
   addThreadActionCreator,
-  toggleUpVoteThreadActionCreator,
-  toggleDownVoteThreadActionCreator,
+  upVoteThreadActionCreator,
+  downVoteThreadActionCreator,
   asyncAddThread,
-  asyncToogleUpVoteThread,
-  asyncToogleDownVoteThread,
+  asyncUpVoteThread,
+  asyncDownVoteThread,
 };

@@ -1,10 +1,10 @@
 import parse from "html-react-parser";
-import UpVoteButton from "./button/UpVoteButton";
-import DownVoteButton from "./button/DownVoteButton";
-import ShareVoteButton from "./button/ShareVoteButton";
+import ShareVoteButton from "./ShareVoteButton";
 import { postedAt } from "../utils";
 import PropTypes from "prop-types";
 import { userShape } from "./ThreadItem";
+import VoteButton from "./VoteButton";
+import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
 
 function ThreadDetail({
   id,
@@ -34,24 +34,24 @@ function ThreadDetail({
   };
 
   return (
-    <div className="p-8 my-5 rounded-md shadow-sm border">
+    <>
       <div className="mb-2 px-3 py-1 ring-1 ring-gray-500 rounded-sm inline-block">
         #{category}
       </div>
       <div className="mb-2 text-2xl font-semibold text-indigo-500">{title}</div>
       <div className="mb-2">{parse(body)}</div>
       <div className="flex gap-4">
-        <UpVoteButton
-          upVoteBy={upVoteThreadDetail}
-          upVotesBy={upVotesBy}
-          isThreadUpVote={isThreadUpVote}
-          onUpVoteClick={onUpVoteClick}
+        <VoteButton
+          voteBy={upVoteThreadDetail}
+          votesBy={upVotesBy}
+          onVoteClick={onUpVoteClick}
+          icon={isThreadUpVote ? <BiSolidLike /> : <BiLike />}
         />
-        <DownVoteButton
-          downVoteBy={downVoteThreadDetail}
-          downVotesBy={downVotesBy}
-          isThreadDownVote={isThreadDownVote}
-          onDownVoteClick={onDownVoteClick}
+        <VoteButton
+          voteBy={downVoteThreadDetail}
+          votesBy={downVotesBy}
+          onVoteClick={onDownVoteClick}
+          icon={isThreadDownVote ? <BiSolidDislike /> : <BiDislike />}
         />
         <ShareVoteButton />
         <div>{postedAt(createdAt)}</div>
@@ -59,22 +59,7 @@ function ThreadDetail({
           Dibuat oleh <strong>{owner.name}</strong>
         </p>
       </div>
-      <div className="mt-5">
-        <div className="text-lg font-semibold">Beri Komentar</div>
-        <div className="my-4">
-          <div
-            className="border-2 border-gray-700 p-2 mb-4 h-52 rounded-md"
-            contentEditable
-          ></div>
-          <button className="bg-indigo-400 rounded-sm w-full p-2" type="button">
-            Kirim
-          </button>
-        </div>
-        <div>
-          <div className="text-lg font-semibold">Komentar (0)</div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
