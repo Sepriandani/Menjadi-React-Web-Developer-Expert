@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncPopulateLeaderboards } from "../states/leaderboards/action";
 import LeaderboardItem from "../components/LeaderboardItem";
 
-function LeaderboardsPage() {
+export default function LeaderboardsPage() {
   const dispatch = useDispatch();
   const { leaderboards = [] } = useSelector((states) => states);
 
@@ -26,5 +26,3 @@ function LeaderboardsPage() {
     </div>
   );
 }
-
-export default LeaderboardsPage;

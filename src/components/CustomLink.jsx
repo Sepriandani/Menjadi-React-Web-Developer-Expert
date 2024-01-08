@@ -1,9 +1,11 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link, useResolvedPath } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function CustomLink({ to, children, ...props }) {
+export default function CustomLink({ to, children, location, ...props }) {
   const resolvePath = useResolvedPath(to);
-  const isActive = useMatch({ path: resolvePath.pathname, end: true });
+  const isActive =
+    location.pathname === resolvePath.pathname ||
+    location.pathname.startsWith(resolvePath.pathname);
 
   return (
     <li>
@@ -25,6 +27,5 @@ function CustomLink({ to, children, ...props }) {
 CustomLink.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.any.isRequired,
+  location: PropTypes.object.isRequired,
 };
-
-export default CustomLink;

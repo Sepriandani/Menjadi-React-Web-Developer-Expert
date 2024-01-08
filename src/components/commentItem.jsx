@@ -1,11 +1,11 @@
 import { postedAt } from "../utils";
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
-import { userShape } from "./ThreadItem";
 import VoteButton from "./VoteButton";
 import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
+import { userShape } from "./ThreadDetail";
 
-function CommentItem({
+export default function CommentItem({
   id,
   content,
   createdAt,
@@ -36,7 +36,7 @@ function CommentItem({
           <img
             src={owner.avatar}
             alt="Owner avatar"
-            className="rounded-full w-6 bg-orange-400"
+            className="rounded-full w-6"
           ></img>
           <div className="font-semibold">{owner.name}</div>
         </div>
@@ -74,5 +74,5 @@ CommentItem.propTypes = {
   ...commentShape,
 };
 
-export default CommentItem;
+// eslint-disable-next-line react-refresh/only-export-components
 export { commentShape };

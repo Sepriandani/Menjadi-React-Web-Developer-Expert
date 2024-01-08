@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 
-function ThreadsPage() {
+export default function ThreadsPage() {
   const {
     threads = [],
     users = [],
@@ -62,5 +62,3 @@ function ThreadsPage() {
     </>
   );
 }
-
-export default ThreadsPage;

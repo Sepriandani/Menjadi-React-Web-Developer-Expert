@@ -4,7 +4,7 @@ import RegisterForm from "../components/RegiterForm";
 import { useDispatch } from "react-redux";
 import { asyncRegisterUser } from "../states/users/action";
 
-function RegisterPage() {
+export default function RegisterPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,5 +21,3 @@ function RegisterPage() {
     </div>
   );
 }
-
-export default RegisterPage;

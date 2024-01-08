@@ -11,10 +11,10 @@ const store = configureStore({
   reducer: {
     users: usersReducer,
     authUser: authUserReducer,
+    isPreload: isPreloadReducer,
     threads: threadsReducer,
     threadDetail: threadDetailReducer,
     leaderboards: leaderboardsReducer,
-    isPreload: isPreloadReducer,
     loadingBar: loadingBarReducer,
   },
 });

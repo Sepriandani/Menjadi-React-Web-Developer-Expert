@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function ThreadInput({
+export default function ThreadInput({
   title,
   onTitleChange,
   category,
@@ -55,5 +55,3 @@ ThreadInput.propTypes = {
   onBodyChange: PropTypes.func.isRequired,
   addThread: PropTypes.func.isRequired,
 };
-
-export default ThreadInput;

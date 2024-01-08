@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
 
-function CategoryItem({ category, isSelected, onCategoryChange }) {
+export default function CategoryItem({
+  category,
+  isSelected,
+  onCategoryChange,
+}) {
   const handleClick = () => {
     onCategoryChange(category);
   };
@@ -8,7 +12,7 @@ function CategoryItem({ category, isSelected, onCategoryChange }) {
   return (
     <button
       className={`${
-        isSelected && `bg-indigo-400`
+        isSelected && `bg-indigo-400 text-white`
       } px-3 py-1 ring-1 ring-gray-500 rounded-sm hover:bg-indigo-400 hover:text-white`}
       type="button"
       onClick={handleClick}
@@ -23,5 +27,3 @@ CategoryItem.propTypes = {
   isSelected: PropTypes.bool.isRequired,
   onCategoryChange: PropTypes.func,
 };
-
-export default CategoryItem;

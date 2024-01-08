@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { asyncAddThread } from "../states/threads/action";
 import useInput from "../hooks/useInput";
 
-function AddThreadPage() {
+export default function AddThreadPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -12,10 +12,10 @@ function AddThreadPage() {
   const [category, onCategoryChange] = useInput("");
   const [body, onBodyChange] = useInput("");
 
-  function onAddThread() {
+  const onAddThread = () => {
     dispatch(asyncAddThread({ title, category, body }));
-    navigate("/");
-  }
+    navigate("/threads");
+  };
 
   return (
     <ThreadInput
@@ -29,5 +29,3 @@ function AddThreadPage() {
     />
   );
 }
-
-export default AddThreadPage;

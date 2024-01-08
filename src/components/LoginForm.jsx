@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
 
-function LoginForm({ login }) {
+export default function LoginForm({ login }) {
   const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
 
@@ -39,7 +39,7 @@ function LoginForm({ login }) {
           </div>
           <button
             onClick={() => login({ email, password })}
-            className="bg-indigo-400 p-2 rounded-sm"
+            className="bg-indigo-400 p-2 rounded-sm text-white font-semibold"
             type="button"
           >
             Login
@@ -53,5 +53,3 @@ function LoginForm({ login }) {
 LoginForm.propTypes = {
   login: PropTypes.func.isRequired,
 };
-
-export default LoginForm;

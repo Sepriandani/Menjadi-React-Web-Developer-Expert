@@ -18,7 +18,6 @@ function setIsPreloadActionCreator(isPreload) {
 function asyncPreloadProcess() {
   return async (dispatch) => {
     dispatch(showLoading());
-
     try {
       const authUser = await api.getOwnProfile();
       dispatch(setAuthUserActionCreator(authUser));

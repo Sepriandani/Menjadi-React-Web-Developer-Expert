@@ -2,12 +2,15 @@ import { useDispatch } from "react-redux";
 import HeroImage from "../components/HeroImage";
 import LoginForm from "../components/LoginForm";
 import { asyncSetAuthUser } from "../states/authUser/action";
+import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
+export default function LoginPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onLogin = ({ email, password }) => {
     dispatch(asyncSetAuthUser({ email, password }));
+    navigate("/threads");
   };
 
   return (
@@ -17,5 +20,3 @@ function LoginPage() {
     </div>
   );
 }
-
-export default LoginPage;

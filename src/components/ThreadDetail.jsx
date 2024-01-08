@@ -2,11 +2,10 @@ import parse from "html-react-parser";
 import ShareVoteButton from "./ShareVoteButton";
 import { postedAt } from "../utils";
 import PropTypes from "prop-types";
-import { userShape } from "./ThreadItem";
 import VoteButton from "./VoteButton";
 import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
 
-function ThreadDetail({
+export default function ThreadDetail({
   id,
   title,
   body,
@@ -16,7 +15,6 @@ function ThreadDetail({
   downVotesBy,
   upVoteThreadDetail,
   downVoteThreadDetail,
-  neutralizeVoteThreadDetail,
   owner,
   authUser,
 }) {
@@ -55,13 +53,21 @@ function ThreadDetail({
         />
         <ShareVoteButton />
         <div>{postedAt(createdAt)}</div>
-        <p>
-          Dibuat oleh <strong>{owner.name}</strong>
-        </p>
+        <div className="flex items-center gap-2">
+          <img src={owner.avatar} alt="avatar" className="rounded-full w-6" />{" "}
+          {owner.name}
+        </div>
       </div>
     </>
   );
 }
+
+const userShape = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  avatar: PropTypes.string.isRequired,
+};
 
 ThreadDetail.propTypes = {
   id: PropTypes.string.isRequired,
@@ -73,9 +79,9 @@ ThreadDetail.propTypes = {
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   upVoteThreadDetail: PropTypes.func.isRequired,
   downVoteThreadDetail: PropTypes.func.isRequired,
-  neutralizeVoteThreadDetail: PropTypes.func.isRequired,
   owner: PropTypes.shape(userShape),
   authUser: PropTypes.string.isRequired,
 };
 
-export default ThreadDetail;
+// eslint-disable-next-line react-refresh/only-export-components
+export { userShape };

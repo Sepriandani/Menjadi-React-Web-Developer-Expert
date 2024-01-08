@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
 
-function RegisterForm({ register }) {
+export default function RegisterForm({ register }) {
   const [name, onNameChange] = useInput("");
   const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
@@ -43,10 +43,10 @@ function RegisterForm({ register }) {
           </div>
           <button
             onClick={() => register({ name, email, password })}
-            className="bg-indigo-400 p-2 rounded-sm"
+            className="bg-indigo-400 p-2 rounded-sm text-white font-semibold"
             type="button"
           >
-            Login
+            Daftar
           </button>
         </form>
       </div>
@@ -57,5 +57,3 @@ function RegisterForm({ register }) {
 RegisterForm.propTypes = {
   register: PropTypes.func.isRequired,
 };
-
-export default RegisterForm;

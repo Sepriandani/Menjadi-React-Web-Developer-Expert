@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function VoteButton({ voteBy, votesBy, onVoteClick, icon }) {
+export default function VoteButton({ voteBy, votesBy, onVoteClick, icon }) {
   return (
     <div className="flex items-center gap-1">
       {voteBy && (
@@ -16,10 +16,8 @@ function VoteButton({ voteBy, votesBy, onVoteClick, icon }) {
 }
 
 VoteButton.propTypes = {
-  voteBy: PropTypes.bool,
+  voteBy: PropTypes.func.isRequired,
   votesBy: PropTypes.array,
   onVoteClick: PropTypes.func.isRequired,
   icon: PropTypes.any.isRequired,
 };
-
-export default VoteButton;

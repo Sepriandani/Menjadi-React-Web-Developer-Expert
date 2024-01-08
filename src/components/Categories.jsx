@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import CategoryItem from "./CategoryItem";
 
-function Categories({ threads, selectedCategory, onCategoryChange }) {
+export default function Categories({
+  threads,
+  selectedCategory,
+  onCategoryChange,
+}) {
   return (
     <div className="w-full">
       <div className="text-lg mb-4">Kategori Populer</div>
@@ -24,5 +28,3 @@ Categories.propTypes = {
   selectedCategory: PropTypes.string.isRequired,
   onCategoryChange: PropTypes.func.isRequired,
 };
-
-export default Categories;

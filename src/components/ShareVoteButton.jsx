@@ -1,6 +1,6 @@
 import { BiShare } from "react-icons/bi";
 
-function ShareVoteButton() {
+export default function ShareVoteButton() {
   return (
     <div className="flex items-center gap-1">
       <button className="text-lg" type="button">
@@ -10,5 +10,3 @@ function ShareVoteButton() {
     </div>
   );
 }
-
-export default ShareVoteButton;

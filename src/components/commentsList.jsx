@@ -1,8 +1,12 @@
 import CommentItem, { commentShape } from "./commentItem";
 import PropTypes from "prop-types";
 
-function CommentsList({ comments, authUser, upVoteComment, downVoteComment }) {
-  console.log(comments);
+export default function CommentsList({
+  comments,
+  authUser,
+  upVoteComment,
+  downVoteComment,
+}) {
   return (
     <>
       {comments.map((comment) => (
@@ -24,5 +28,3 @@ CommentsList.propTypes = {
   upVoteComment: PropTypes.func.isRequired,
   downVoteComment: PropTypes.func.isRequired,
 };
-
-export default CommentsList;

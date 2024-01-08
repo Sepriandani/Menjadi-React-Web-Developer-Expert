@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function Topbar({ name, avatar }) {
+export default function Topbar({ name, avatar }) {
   return (
     <div className="py-4 px-10 shadow-md bg-indigo-400 lg:bg-white w-full fixed z-[9999]">
       <div className="hidden lg:flex justify-between mr-60 items-center">
@@ -31,5 +31,3 @@ Topbar.propTypes = {
   name: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
 };
-
-export default Topbar;

@@ -1,7 +1,7 @@
 import ThreadItem from "./ThreadItem";
 import PropTypes from "prop-types";
 
-function ThreadsList({ threads, upVoteBy, downVoteBy }) {
+export default function ThreadsList({ threads, upVoteBy, downVoteBy }) {
   return (
     <div className="my-10">
       <div className="text-2xl font-semibold">Diskusi Tesedia</div>
@@ -22,5 +22,3 @@ ThreadsList.propTypes = {
   upVoteBy: PropTypes.func.isRequired,
   downVoteBy: PropTypes.func.isRequired,
 };
-
-export default ThreadsList;

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function CommentInput({ onContentInput, onAddComment }) {
+export default function CommentInput({ onContentInput, onAddComment }) {
   return (
     <>
       <div className="text-lg font-semibold">Beri Komentar</div>
@@ -12,7 +12,7 @@ function CommentInput({ onContentInput, onAddComment }) {
         ></div>
         <button
           onClick={onAddComment}
-          className="bg-indigo-400 rounded-sm w-full p-2"
+          className="bg-indigo-400 rounded-sm w-full p-2 text-white font-semibold"
           type="button"
         >
           Kirim
@@ -26,5 +26,3 @@ CommentInput.propTypes = {
   onContentInput: PropTypes.func.isRequired,
   onAddComment: PropTypes.func.isRequired,
 };
-
-export default CommentInput;

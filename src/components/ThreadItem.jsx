@@ -6,7 +6,7 @@ import ShareVoteButton from "./ShareVoteButton";
 import VoteButton from "./VoteButton";
 import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
 
-function ThreadItem({
+export default function ThreadItem({
   id,
   title,
   body,
@@ -16,6 +16,7 @@ function ThreadItem({
   downVotesBy,
   upVoteBy,
   downVoteBy,
+  totalComments,
   owner,
   authUser,
 }) {
@@ -73,21 +74,15 @@ function ThreadItem({
           icon={isThreadDownVote ? <BiSolidDislike /> : <BiDislike />}
         />
         <ShareVoteButton />
+        <div>{totalComments} komentar</div>
         <div>{postedAt(createdAt)}</div>
-        <p>
+        <div>
           Dibuat oleh <strong>{owner}</strong>
-        </p>
+        </div>
       </div>
     </div>
   );
 }
-
-const userShape = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string,
-  avatar: PropTypes.string.isRequired,
-};
 
 const threadItemShape = {
   id: PropTypes.string.isRequired,
@@ -95,9 +90,10 @@ const threadItemShape = {
   body: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-  owner: PropTypes.shape(userShape).isRequired,
+  totalComments: PropTypes.number.isRequired,
 };
 
 ThreadItem.propTypes = {
@@ -105,5 +101,5 @@ ThreadItem.propTypes = {
   authUser: PropTypes.string.isRequired,
 };
 
-export default ThreadItem;
-export { threadItemShape, userShape };
+// eslint-disable-next-line react-refresh/only-export-components
+export { threadItemShape };

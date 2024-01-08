@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function LeaderboardItem({ user, score }) {
+export default function LeaderboardItem({ user, score }) {
   return (
     <div className="flex justify-between mb-3">
       <div className="flex items-center gap-4">
@@ -20,5 +20,3 @@ LeaderboardItem.propTypes = {
   user: PropTypes.object.isRequired,
   score: PropTypes.number.isRequired,
 };
-
-export default LeaderboardItem;

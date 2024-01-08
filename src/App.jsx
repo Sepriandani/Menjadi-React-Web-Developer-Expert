@@ -12,6 +12,7 @@ import Loading from "./components/Loading";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import AddThreadPage from "./pages/AddThreadPage";
+import { asyncUnsetAuthUser } from "./states/authUser/action";
 
 export default function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -22,6 +23,10 @@ export default function App() {
   useEffect(() => {
     dispatch(asyncPreloadProcess());
   }, [dispatch]);
+
+  const onLogoutHandler = () => {
+    dispatch(asyncUnsetAuthUser());
+  };
 
   if (isPreload) {
     return null;
@@ -45,12 +50,12 @@ export default function App() {
     <>
       <Loading />
       <main className="m-0 p-0 relative">
-        <Sidebar />
+        <Sidebar onLogout={onLogoutHandler} />
         <div className=" ml-0 p-0 lg:ml-60">
           <Topbar name={authUser.name} avatar={authUser.avatar} />
           <div className="px-2 pb-10 pt-20 lg:pt-24 lg:px-10">
             <Routes>
-              <Route path="/" element={<ThreadsPage />} />
+              <Route path="/threads" element={<ThreadsPage />} />
               <Route path="/leaderboards" element={<LeaderboardsPage />} />
               <Route path="/new" element={<AddThreadPage />} />
               <Route path="/threads/:threadId" element={<DetailThreadPage />} />

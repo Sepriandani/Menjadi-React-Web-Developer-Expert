@@ -12,10 +12,10 @@ import {
 } from "../states/threadDetail/action";
 import NotFoundPage from "./NotFoundPage";
 import ThreadDetail from "../components/ThreadDetail";
-import CommentInput from "../components/commentInput";
 import CommentsList from "../components/commentsList";
+import CommentInput from "../components/CommentInput";
 
-function DetailThreadPage() {
+export default function DetailThreadPage() {
   const { threadId } = useParams();
   const { threadDetail = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
@@ -37,13 +37,13 @@ function DetailThreadPage() {
     dispatch(asyncNeutralizeVoteThreadDetail());
   };
 
-  function onContentCommentInputHandler(event) {
+  const onContentCommentInputHandler = (event) => {
     setContent(event.target.innerHTML);
-  }
+  };
 
-  function onAddCommentHandler() {
+  const onAddCommentHandler = () => {
     dispatch(asyncCreateComment({ content }));
-  }
+  };
 
   const onUpVoteCommentHandler = (commentId) => {
     dispatch(asyncUpVoteComment(commentId));
@@ -84,5 +84,3 @@ function DetailThreadPage() {
     </div>
   );
 }
-
-export default DetailThreadPage;
