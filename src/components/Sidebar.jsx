@@ -1,11 +1,11 @@
-import { useLocation } from "react-router-dom";
-import menu from "../utils/menu";
-import MenuItem from "./MenuItem";
-import { IoMdLogOut } from "react-icons/io";
-import PropTypes from "prop-types";
+import { useLocation } from 'react-router-dom'
+import menu from '../utils/menu'
+import MenuItem from './MenuItem'
+import { IoMdLogOut } from 'react-icons/io'
+import PropTypes from 'prop-types'
 
 export default function Sidebar({ onLogout }) {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
     <aside className="bg-indigo-400 w-52 lg:w-60  fixed z-[9999] hidden left-36 lg:left-0 top-16 lg:top-0 lg:h-screen lg:flex items-center">
@@ -30,9 +30,9 @@ export default function Sidebar({ onLogout }) {
         </li>
       </ul>
     </aside>
-  );
+  )
 }
 
 Sidebar.propTypes = {
   onLogout: PropTypes.func,
-};
+}

@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
-import useInput from "../hooks/useInput";
-import PropTypes from "prop-types";
+import { Link } from 'react-router-dom'
+import useInput from '../hooks/useInput'
+import PropTypes from 'prop-types'
 
 export default function RegisterForm({ register }) {
-  const [name, onNameChange] = useInput("");
-  const [email, onEmailChange] = useInput("");
-  const [password, onPasswordChange] = useInput("");
+  const [name, onNameChange] = useInput('')
+  const [email, onEmailChange] = useInput('')
+  const [password, onPasswordChange] = useInput('')
 
   return (
     <div className="flex-1">
@@ -36,7 +36,7 @@ export default function RegisterForm({ register }) {
             type="password"
           />
           <div className="mb-4 text-sm">
-            Sudah punya akun ?{" "}
+            Sudah punya akun ?{' '}
             <Link className="text-indigo-400" to="/">
               Login disini
             </Link>
@@ -51,9 +51,9 @@ export default function RegisterForm({ register }) {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
 RegisterForm.propTypes = {
   register: PropTypes.func.isRequired,
-};
+}

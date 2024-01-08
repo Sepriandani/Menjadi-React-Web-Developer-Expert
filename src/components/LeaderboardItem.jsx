@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 export default function LeaderboardItem({ user, score }) {
   return (
@@ -13,10 +13,10 @@ export default function LeaderboardItem({ user, score }) {
       </div>
       <p>{score}</p>
     </div>
-  );
+  )
 }
 
 LeaderboardItem.propTypes = {
   user: PropTypes.object.isRequired,
   score: PropTypes.number.isRequired,
-};
+}

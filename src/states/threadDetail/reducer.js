@@ -1,9 +1,9 @@
-import { ActionType } from "./action";
+import { ActionType } from './action'
 
 function threadDetailReducer(threadDetail = null, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREAD_DETAIL:
-      return action.payload.threadDetail;
+      return action.payload.threadDetail
     case ActionType.UP_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
@@ -15,7 +15,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
               (id) => id !== action.payload.userId,
             )
           : threadDetail.downVotesBy,
-      };
+      }
     case ActionType.DOWN_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
@@ -27,7 +27,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
               (id) => id !== action.payload.userId,
             )
           : threadDetail.downVotesBy.concat([action.payload.userId]),
-      };
+      }
     case ActionType.NEUTRALIZE_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
@@ -39,12 +39,12 @@ function threadDetailReducer(threadDetail = null, action = {}) {
               (id) => id !== action.payload.userId,
             )
           : threadDetail.downVotesBy,
-      };
+      }
     case ActionType.CREATE_COMMENT:
       return {
         ...threadDetail,
         comments: [action.payload.comment, ...threadDetail.comments],
-      };
+      }
     case ActionType.UP_VOTE_COMMENT:
       return {
         ...threadDetail,
@@ -60,11 +60,11 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                     (id) => id !== action.payload.userId,
                   )
                 : comment.downVotesBy,
-            };
+            }
           }
-          return comment;
+          return comment
         }),
-      };
+      }
     case ActionType.DOWN_VOTE_COMMENT:
       return {
         ...threadDetail,
@@ -80,11 +80,11 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                     (id) => id !== action.payload.userId,
                   )
                 : comment.downVotesBy.concat([action.payload.userId]),
-            };
+            }
           }
-          return comment;
+          return comment
         }),
-      };
+      }
     case ActionType.NEUTRALIZE_VOTE_COMMENT:
       return {
         ...threadDetail,
@@ -100,14 +100,14 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                     (id) => id !== action.payload.userId,
                   )
                 : comment.downVotesBy,
-            };
+            }
           }
-          return comment;
+          return comment
         }),
-      };
+      }
     default:
-      return threadDetail;
+      return threadDetail
   }
 }
 
-export default threadDetailReducer;
+export default threadDetailReducer

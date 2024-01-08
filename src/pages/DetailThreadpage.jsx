@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import {
   asyncCreateComment,
   asyncDownVoteComment,
@@ -9,52 +9,52 @@ import {
   asyncReceiveThreadDetail,
   asyncUpVoteComment,
   asyncUpVoteThreadDetail,
-} from "../states/threadDetail/action";
-import NotFoundPage from "./NotFoundPage";
-import ThreadDetail from "../components/ThreadDetail";
-import CommentsList from "../components/commentsList";
-import CommentInput from "../components/CommentInput";
+} from '../states/threadDetail/action'
+import NotFoundPage from './NotFoundPage'
+import ThreadDetail from '../components/ThreadDetail'
+import CommentsList from '../components/commentsList'
+import CommentInput from '../components/CommentInput'
 
 export default function DetailThreadPage() {
-  const { threadId } = useParams();
-  const { threadDetail = null, authUser } = useSelector((states) => states);
-  const dispatch = useDispatch();
-  const [content, setContent] = useState("");
+  const { threadId } = useParams()
+  const { threadDetail = null, authUser } = useSelector((states) => states)
+  const dispatch = useDispatch()
+  const [content, setContent] = useState('')
 
   useEffect(() => {
-    dispatch(asyncReceiveThreadDetail(threadId));
-  }, [threadId, dispatch]);
+    dispatch(asyncReceiveThreadDetail(threadId))
+  }, [threadId, dispatch])
 
   const onUpVoteThreadDetail = () => {
-    dispatch(asyncUpVoteThreadDetail());
-  };
+    dispatch(asyncUpVoteThreadDetail())
+  }
 
   const onDownVoteThreadDetail = () => {
-    dispatch(asyncDownVoteThreadDetail());
-  };
+    dispatch(asyncDownVoteThreadDetail())
+  }
 
   const onNeutralizeVoteThreadDetail = () => {
-    dispatch(asyncNeutralizeVoteThreadDetail());
-  };
+    dispatch(asyncNeutralizeVoteThreadDetail())
+  }
 
   const onContentCommentInputHandler = (event) => {
-    setContent(event.target.innerHTML);
-  };
+    setContent(event.target.innerHTML)
+  }
 
   const onAddCommentHandler = () => {
-    dispatch(asyncCreateComment({ content }));
-  };
+    dispatch(asyncCreateComment({ content }))
+  }
 
   const onUpVoteCommentHandler = (commentId) => {
-    dispatch(asyncUpVoteComment(commentId));
-  };
+    dispatch(asyncUpVoteComment(commentId))
+  }
 
   const onDownVoteCommentHandler = (commentId) => {
-    dispatch(asyncDownVoteComment(commentId));
-  };
+    dispatch(asyncDownVoteComment(commentId))
+  }
 
   if (threadDetail === null) {
-    return <NotFoundPage />;
+    return <NotFoundPage />
   }
 
   return (
@@ -82,5 +82,5 @@ export default function DetailThreadPage() {
         />
       </div>
     </div>
-  );
+  )
 }

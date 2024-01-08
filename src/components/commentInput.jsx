@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 export default function CommentInput({ onContentInput, onAddComment }) {
   return (
@@ -19,10 +19,10 @@ export default function CommentInput({ onContentInput, onAddComment }) {
         </button>
       </div>
     </>
-  );
+  )
 }
 
 CommentInput.propTypes = {
   onContentInput: PropTypes.func.isRequired,
   onAddComment: PropTypes.func.isRequired,
-};
+}

@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 export default function CategoryItem({
   category,
@@ -6,8 +6,8 @@ export default function CategoryItem({
   onCategoryChange,
 }) {
   const handleClick = () => {
-    onCategoryChange(category);
-  };
+    onCategoryChange(category)
+  }
 
   return (
     <button
@@ -19,11 +19,11 @@ export default function CategoryItem({
     >
       #{category}
     </button>
-  );
+  )
 }
 
 CategoryItem.propTypes = {
   category: PropTypes.string.isRequired,
   isSelected: PropTypes.bool.isRequired,
   onCategoryChange: PropTypes.func,
-};
+}

@@ -1,5 +1,5 @@
-import CommentItem, { commentShape } from "./commentItem";
-import PropTypes from "prop-types";
+import CommentItem, { commentShape } from './commentItem'
+import PropTypes from 'prop-types'
 
 export default function CommentsList({
   comments,
@@ -19,7 +19,7 @@ export default function CommentsList({
         />
       ))}
     </>
-  );
+  )
 }
 
 CommentsList.propTypes = {
@@ -27,4 +27,4 @@ CommentsList.propTypes = {
   authUser: PropTypes.string.isRequired,
   upVoteComment: PropTypes.func.isRequired,
   downVoteComment: PropTypes.func.isRequired,
-};
+}

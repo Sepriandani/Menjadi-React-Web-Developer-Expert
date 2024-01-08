@@ -1,4 +1,4 @@
-import { BiShare } from "react-icons/bi";
+import { BiShare } from 'react-icons/bi'
 
 export default function ShareVoteButton() {
   return (
@@ -8,5 +8,5 @@ export default function ShareVoteButton() {
       </button>
       <div>0</div>
     </div>
-  );
+  )
 }

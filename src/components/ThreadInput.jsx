@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 export default function ThreadInput({
   title,
@@ -43,7 +43,7 @@ export default function ThreadInput({
         </button>
       </form>
     </div>
-  );
+  )
 }
 
 ThreadInput.propTypes = {
@@ -54,4 +54,4 @@ ThreadInput.propTypes = {
   body: PropTypes.string.isRequired,
   onBodyChange: PropTypes.func.isRequired,
   addThread: PropTypes.func.isRequired,
-};
+}

@@ -1,9 +1,9 @@
-import parse from "html-react-parser";
-import ShareVoteButton from "./ShareVoteButton";
-import { postedAt } from "../utils";
-import PropTypes from "prop-types";
-import VoteButton from "./VoteButton";
-import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
+import parse from 'html-react-parser'
+import ShareVoteButton from './ShareVoteButton'
+import postedAt from '../utils'
+import PropTypes from 'prop-types'
+import VoteButton from './VoteButton'
+import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from 'react-icons/bi'
 
 export default function ThreadDetail({
   id,
@@ -18,18 +18,18 @@ export default function ThreadDetail({
   owner,
   authUser,
 }) {
-  const isThreadUpVote = upVotesBy.includes(authUser);
-  const isThreadDownVote = downVotesBy.includes(authUser);
+  const isThreadUpVote = upVotesBy.includes(authUser)
+  const isThreadDownVote = downVotesBy.includes(authUser)
 
   const onUpVoteClick = (event) => {
-    event.stopPropagation();
-    upVoteThreadDetail(id);
-  };
+    event.stopPropagation()
+    upVoteThreadDetail(id)
+  }
 
   const onDownVoteClick = (event) => {
-    event.stopPropagation();
-    downVoteThreadDetail(id);
-  };
+    event.stopPropagation()
+    downVoteThreadDetail(id)
+  }
 
   return (
     <>
@@ -54,12 +54,12 @@ export default function ThreadDetail({
         <ShareVoteButton />
         <div>{postedAt(createdAt)}</div>
         <div className="flex items-center gap-2">
-          <img src={owner.avatar} alt="avatar" className="rounded-full w-6" />{" "}
+          <img src={owner.avatar} alt="avatar" className="rounded-full w-6" />{' '}
           {owner.name}
         </div>
       </div>
     </>
-  );
+  )
 }
 
 const userShape = {
@@ -67,7 +67,7 @@ const userShape = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string,
   avatar: PropTypes.string.isRequired,
-};
+}
 
 ThreadDetail.propTypes = {
   id: PropTypes.string.isRequired,
@@ -81,7 +81,7 @@ ThreadDetail.propTypes = {
   downVoteThreadDetail: PropTypes.func.isRequired,
   owner: PropTypes.shape(userShape),
   authUser: PropTypes.string.isRequired,
-};
+}
 
 // eslint-disable-next-line react-refresh/only-export-components
-export { userShape };
+export { userShape }

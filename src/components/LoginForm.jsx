@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import useInput from "../hooks/useInput";
-import PropTypes from "prop-types";
+import { Link } from 'react-router-dom'
+import useInput from '../hooks/useInput'
+import PropTypes from 'prop-types'
 
 export default function LoginForm({ login }) {
-  const [email, onEmailChange] = useInput("");
-  const [password, onPasswordChange] = useInput("");
+  const [email, onEmailChange] = useInput('')
+  const [password, onPasswordChange] = useInput('')
 
   return (
     <div className="flex-1">
@@ -32,7 +32,7 @@ export default function LoginForm({ login }) {
             type="password"
           />
           <div className="mb-4 text-sm">
-            Belum punya akun ?{" "}
+            Belum punya akun ?{' '}
             <Link className="text-indigo-400" to="/register">
               Daftar disini
             </Link>
@@ -47,9 +47,9 @@ export default function LoginForm({ login }) {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
 LoginForm.propTypes = {
   login: PropTypes.func.isRequired,
-};
+}

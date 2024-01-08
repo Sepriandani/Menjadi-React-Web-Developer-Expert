@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 export default function Topbar({ name, avatar }) {
   return (
@@ -24,10 +24,10 @@ export default function Topbar({ name, avatar }) {
         </button>
       </div>
     </div>
-  );
+  )
 }
 
 Topbar.propTypes = {
   name: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
-};
+}

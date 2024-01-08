@@ -1,10 +1,10 @@
-import parse from "html-react-parser";
-import { useNavigate } from "react-router-dom";
-import { postedAt } from "../utils";
-import PropTypes from "prop-types";
-import ShareVoteButton from "./ShareVoteButton";
-import VoteButton from "./VoteButton";
-import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
+import parse from 'html-react-parser'
+import { useNavigate } from 'react-router-dom'
+import postedAt from '../utils'
+import PropTypes from 'prop-types'
+import ShareVoteButton from './ShareVoteButton'
+import VoteButton from './VoteButton'
+import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from 'react-icons/bi'
 
 export default function ThreadItem({
   id,
@@ -20,30 +20,30 @@ export default function ThreadItem({
   owner,
   authUser,
 }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const isThreadUpVote = upVotesBy.includes(authUser);
-  const isThreadDownVote = downVotesBy.includes(authUser);
+  const isThreadUpVote = upVotesBy.includes(authUser)
+  const isThreadDownVote = downVotesBy.includes(authUser)
 
   const onUpVoteClick = (event) => {
-    event.stopPropagation();
-    upVoteBy(id);
-  };
+    event.stopPropagation()
+    upVoteBy(id)
+  }
 
   const onDownVoteClick = (event) => {
-    event.stopPropagation();
-    downVoteBy(id);
-  };
+    event.stopPropagation()
+    downVoteBy(id)
+  }
 
   const onThreadClick = () => {
-    navigate(`/threads/${id}`);
-  };
+    navigate(`/threads/${id}`)
+  }
 
   const onThreadPress = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      navigate(`/threads/${id}`);
+    if (event.key === 'Enter' || event.key === ' ') {
+      navigate(`/threads/${id}`)
     }
-  };
+  }
 
   return (
     <div className="p-6 my-5 rounded-md shadow-sm border">
@@ -81,7 +81,7 @@ export default function ThreadItem({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 const threadItemShape = {
@@ -94,12 +94,12 @@ const threadItemShape = {
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   totalComments: PropTypes.number.isRequired,
-};
+}
 
 ThreadItem.propTypes = {
   ...threadItemShape,
   authUser: PropTypes.string.isRequired,
-};
+}
 
 // eslint-disable-next-line react-refresh/only-export-components
-export { threadItemShape };
+export { threadItemShape }

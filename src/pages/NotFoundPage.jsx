@@ -6,5 +6,5 @@ export default function NotFoundPage() {
         <div className="text-xl">Halaman Tidak Ditemukan</div>
       </div>
     </div>
-  );
+  )
 }

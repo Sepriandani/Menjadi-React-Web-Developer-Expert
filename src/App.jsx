@@ -1,35 +1,33 @@
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import ThreadsPage from "./pages/ThreadsPage";
-import LeaderboardsPage from "./pages/LeaderboardsPage";
-import DetailThreadPage from "./pages/DetailThreadpage";
-import NotFoundPage from "./pages/NotFoundPage";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { asyncPreloadProcess } from "./states/isPreload/action";
-import Loading from "./components/Loading";
-import Sidebar from "./components/Sidebar";
-import Topbar from "./components/Topbar";
-import AddThreadPage from "./pages/AddThreadPage";
-import { asyncUnsetAuthUser } from "./states/authUser/action";
+import { Route, Routes } from 'react-router-dom'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import ThreadsPage from './pages/ThreadsPage'
+import LeaderboardsPage from './pages/LeaderboardsPage'
+import DetailThreadPage from './pages/DetailThreadpage'
+import NotFoundPage from './pages/NotFoundPage'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { asyncPreloadProcess } from './states/isPreload/action'
+import Loading from './components/Loading'
+import Sidebar from './components/Sidebar'
+import Topbar from './components/Topbar'
+import AddThreadPage from './pages/AddThreadPage'
+import { asyncUnsetAuthUser } from './states/authUser/action'
 
 export default function App() {
-  const { authUser = null, isPreload = false } = useSelector(
-    (states) => states,
-  );
-  const dispatch = useDispatch();
+  const { authUser = null, isPreload = false } = useSelector((states) => states)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(asyncPreloadProcess());
-  }, [dispatch]);
+    dispatch(asyncPreloadProcess())
+  }, [dispatch])
 
   const onLogoutHandler = () => {
-    dispatch(asyncUnsetAuthUser());
-  };
+    dispatch(asyncUnsetAuthUser())
+  }
 
   if (isPreload) {
-    return null;
+    return null
   }
 
   if (authUser === null) {
@@ -43,7 +41,7 @@ export default function App() {
           </Routes>
         </main>
       </>
-    );
+    )
   }
 
   return (
@@ -65,5 +63,5 @@ export default function App() {
         </div>
       </main>
     </>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import ThreadItem from "./ThreadItem";
-import PropTypes from "prop-types";
+import ThreadItem from './ThreadItem'
+import PropTypes from 'prop-types'
 
 export default function ThreadsList({ threads, upVoteBy, downVoteBy }) {
   return (
@@ -14,11 +14,11 @@ export default function ThreadsList({ threads, upVoteBy, downVoteBy }) {
         />
       ))}
     </div>
-  );
+  )
 }
 
 ThreadsList.propTypes = {
   threads: PropTypes.array.isRequired,
   upVoteBy: PropTypes.func.isRequired,
   downVoteBy: PropTypes.func.isRequired,
-};
+}

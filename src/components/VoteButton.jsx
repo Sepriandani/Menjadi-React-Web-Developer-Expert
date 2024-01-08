@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 export default function VoteButton({ voteBy, votesBy, onVoteClick, icon }) {
   return (
@@ -12,7 +12,7 @@ export default function VoteButton({ voteBy, votesBy, onVoteClick, icon }) {
         </>
       )}
     </div>
-  );
+  )
 }
 
 VoteButton.propTypes = {
@@ -20,4 +20,4 @@ VoteButton.propTypes = {
   votesBy: PropTypes.array,
   onVoteClick: PropTypes.func.isRequired,
   icon: PropTypes.any.isRequired,
-};
+}

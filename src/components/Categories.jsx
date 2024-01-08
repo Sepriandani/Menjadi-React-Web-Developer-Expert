@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import CategoryItem from "./CategoryItem";
+import PropTypes from 'prop-types'
+import CategoryItem from './CategoryItem'
 
 export default function Categories({
   threads,
@@ -20,11 +20,11 @@ export default function Categories({
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 Categories.propTypes = {
   threads: PropTypes.array.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   onCategoryChange: PropTypes.func.isRequired,
-};
+}
