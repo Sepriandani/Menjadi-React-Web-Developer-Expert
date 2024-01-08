@@ -1,7 +1,7 @@
 /**
  * @TODO: Define the reducer for the talks state
  */
-import { ActionType } from './action';
+import { ActionType } from "./action";
 
 function talksReducer(talks = [], action = {}) {
   switch (action.type) {

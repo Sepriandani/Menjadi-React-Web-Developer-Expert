@@ -1,10 +1,10 @@
 /**
  * @TODO: Define all the actions (creator) for the users state
  */
-import api from '../../utils/api';
+import api from "../../utils/api";
 
 const ActionType = {
-  RECEIVER_USERS: 'RECEIVE_USERS',
+  RECEIVER_USERS: "RECEIVE_USERS",
 };
 
 function receiveUsersActionCreator(users) {
@@ -26,8 +26,4 @@ function asyncRegisterUser({ id, name, password }) {
   };
 }
 
-export {
-  ActionType,
-  receiveUsersActionCreator,
-  asyncRegisterUser,
-};
+export { ActionType, receiveUsersActionCreator, asyncRegisterUser };
